@@ -50,7 +50,7 @@ words = [word for word in words if word !=' ']
 words = [re.sub(r'^RT[\s]+', '', word) for word in words]
 
 # Split attached words
-words = " ".join([s for s in re.split("([A-Z][a-z]+[^A-Z]*)",tweet) if s])
+words = " ".join([s for s in re.split("([A-Z][a-z]+[^A-Z]*)",words) if s])
 
 ### Stopwords
 # The next step is to remove the useless words, namely, the stopwords. Stopwords are words that frequently appear in many articles,
