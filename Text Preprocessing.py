@@ -68,26 +68,5 @@ def space(comment):
     return " ".join([token.lemma_ for token in doc])
 df_lim_nat['text1'] = df_lim_nat['text1'].apply(space)
 
-# Let's summarize the steps in a function and apply the function in all texts:
 
-
-def text_preprocessing(str_input): 
-     #tokenization, remove punctuation, lemmatization
-     words = [token.lemma_ for token in nlp(str_input) if not token.is_punct]
- 
-     # remove symbols, websites, email addresses 
-     words = [re.sub(r"[^A-Za-z@]", '', word) for word in words] 
-     words = [re.sub(r'@[A-Za-z0-9]+','',word) for word in words]
-     words = [re.sub(r"\S+com", '', word) for word in words]
-     words = [re.sub(r"\S+@\S+", '', word) for word in words]
-     words = [word for word in words if word!='']
-     words = [word for word in words if len(word)!=0] 
- 
-     #remove stopwords     
-     words=[word.lower() for word in words if word.lower() not in stopwords]
-    
-     #combine a list into one string   
-     string = " ".join(words)
-     return string
-    
 
