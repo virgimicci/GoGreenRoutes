@@ -33,7 +33,7 @@ limerick_list = list(limerick) #979143
 
 limerick_nature = collection.posts.find({"$text":{"$search":"\"limerick\" \"nature\""}})
 limerick_nature_list = list(limerick_nature) #2381
-df_lim_nat = DataFrame(limerick_nature_list)
+df_lim_nat = pd.DataFrame(limerick_nature_list)
 
 df_lim_nat.info()
 # <class 'pandas.core.frame.DataFrame'>
