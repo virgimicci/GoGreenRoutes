@@ -85,5 +85,6 @@ for word, count in word_counter.most_common(n_print):
 # Draw a bar chart
 lst = word_counter.most_common(n_print)
 df_most_common = pd.DataFrame(lst, columns = ['Word', 'Count'])
-df_most_common.plot.bar(x='Word',y='Count')
+# Drop limerick and nature
+df_most_common.drop([0,1].plot.bar(x='Word',y='Count')
 
