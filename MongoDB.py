@@ -55,4 +55,4 @@ df_lim_nat.info()
 # 11  geo                  228 non-null    object
 
 
-
+df_green = pd.DataFrame(collection.posts.find({"$and" : [{"$text":{"$search": "shannon nature ballyhoura Thomond Park Westfields peoplespark TedRussell Adare Wetlands shelbourne"}},{"geo": {"place_id": "54e862bb3ff2f749"}}]} ))
