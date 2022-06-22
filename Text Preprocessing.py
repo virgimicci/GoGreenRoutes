@@ -23,7 +23,7 @@ df_lim_nat['text1'] = [re.sub(r"\S+com", "", x) for x in df_lim_nat['text1']]
 df_lim_nat['text1'] = [re.sub(r"\S+@\S+", "", x) for x in df_lim_nat['text1']]
 
 # Remove old style retweet text "RT"
-df_lim_nat['text1'] = [re.sub(r'^RT[\s]+', '', x) for x in df_lim_nat['text1']]
+df_lim_nat['text1'] = [re.sub(r'^rt[\s]+', '', x) for x in df_lim_nat['text1']]
 
 # Expanding Contractions
 # dictionary consisting of the contraction and the actual value
@@ -63,10 +63,27 @@ df_lim_nat['text1'] = df_lim_nat['text1'].apply(lambda x: " ".join(x for x in x.
 
 # .lemma_ function from spacy 
 
-def space(comment):
-    doc = nlp(comment)
+def space(tweet):
+    doc = nlp(tweet)
     return " ".join([token.lemma_ for token in doc])
 df_lim_nat['text1'] = df_lim_nat['text1'].apply(space)
 
+## Check which are the most common words
+# token dividen
+token_ = [i.split() for i in df_lim_nat["text1"]]
+# token joined in one list
+tokens = [item for sublist in token_ for item in sublist]
 
+# Print most common word
+n_print = int(input("How many most common words to print: "))
+print("\nOK. The {} most common words are as follows\n".format(n_print))
+word_counter = collections.Counter(tokens)
+for word, count in word_counter.most_common(n_print):
+    print(word, ": ", count)
+
+# Create a data frame of the most common words 
+# Draw a bar chart
+lst = word_counter.most_common(n_print)
+df_most_common = pd.DataFrame(lst, columns = ['Word', 'Count'])
+df_most_common.plot.bar(x='Word',y='Count')
 
