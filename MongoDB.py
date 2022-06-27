@@ -31,7 +31,7 @@ nature_list = list(nature) # 31301
 limerick = collection.posts.find({"$text":{"$search":"limerick"}})
 limerick_list = list(limerick) #979143
 
-limerick_nature = collection.posts.find({"$text":{"$search":"\"limerick\" \"nature\""}}) # 46642
+limerick_nature = collection.posts.find({"$text":{"$search":"\"limerick\" \"nature\""}}) #  2380
 limerick_nature_list = list(limerick_nature) #2381
 df_lim_nat = pd.DataFrame(limerick_nature_list)
 
@@ -68,6 +68,6 @@ df_green5 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"ted russ
 
 
 df_limerick = pd.concat([df_lim_nat,df_green, df_green1, df_green1_2, df_green1_3, 
-                         df_green2, df_green3, df_green4, df_green5 ]).drop_duplicates(subset = ["id"]).reset_index(drop=True)
+                         df_green2, df_green3, df_green4, df_green5 ]).drop_duplicates(subset = ["id"]).reset_index(drop=True) # 46642
 
 
