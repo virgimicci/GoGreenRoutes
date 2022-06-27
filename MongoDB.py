@@ -54,5 +54,20 @@ df_lim_nat.info()
 # 10  context_annotations  1179 non-null   object
 # 11  geo                  228 non-null    object
 
+# Df with 
+df_green = pd.DataFrame(collection.posts.find({"$and" : 
+                                               [{"$text":{"$search": "shannon nature ballyhoura Thomond Park Westfields peoplespark TedRussell Adare Wetlands shelbourne"}},
+                                                {"geo": {"place_id": "54e862bb3ff2f749"}}]} )) # 1102 post
+df_green1 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"shannon\" \"limerick\""}} )) # 21636
+df_green1_2 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"shannon estuary\" \"limerick\""}} )) # 345
+df_green1_3 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"shannon river\" \"limerick\""}} )) # 776
+df_green2 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"park\" \"limerick\""}} )) # 20595
+df_green3 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"ballyhoura\" \"limerick\""}} )) # 1866
+df_green4 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"westfields\" \"limerick\""}} )) # 666
+df_green5 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"ted russel\" \"limerick\""}} )) # 69
 
-df_green = pd.DataFrame(collection.posts.find({"$and" : [{"$text":{"$search": "shannon nature ballyhoura Thomond Park Westfields peoplespark TedRussell Adare Wetlands shelbourne"}},{"geo": {"place_id": "54e862bb3ff2f749"}}]} ))
+
+df_limerick = pd.concat([df_lim_nat,df_green, df_green1, df_green1_2, df_green1_3, 
+                         df_green2, df_green3, df_green4, df_green5 ]).drop_duplicates(subset = ["id"]).reset_index(drop=True)
+
+
