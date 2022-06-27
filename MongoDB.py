@@ -31,7 +31,7 @@ nature_list = list(nature) # 31301
 limerick = collection.posts.find({"$text":{"$search":"limerick"}})
 limerick_list = list(limerick) #979143
 
-limerick_nature = collection.posts.find({"$text":{"$search":"\"limerick\" \"nature\""}})
+limerick_nature = collection.posts.find({"$text":{"$search":"\"limerick\" \"nature\""}}) # 46642
 limerick_nature_list = list(limerick_nature) #2381
 df_lim_nat = pd.DataFrame(limerick_nature_list)
 
