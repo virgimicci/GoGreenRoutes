@@ -6,7 +6,6 @@ nlp = spacy.load('en_core_web_sm')
 import re #library for regular expressions
 import pandas as pd
 
-# my df = df_lim_nat 2380
 
 ### Text cleaning 
 # It's important to follow this order
@@ -31,7 +30,7 @@ apos_dict = {"'s":" is","n't":" not","'m":" am","'ll":" will",
            "'d":" would","'ve":" have","'re":" are"}
 # replace the contractions
 for key,value in apos_dict.items():
-    if key in df['text1']:
+    if key in df_green['text1']:
         df_green['text1'] = df_green['text1'].replace(key,value)
 
 # Split attached words
