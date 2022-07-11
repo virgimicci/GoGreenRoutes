@@ -31,43 +31,21 @@ nature_list = list(nature) # 31301
 limerick = collection.posts.find({"$text":{"$search":"limerick"}})
 limerick_list = list(limerick) #979143
 
-limerick_nature = collection.posts.find({"$text":{"$search":"\"limerick\" \"nature\""}}) #  2380
-limerick_nature_list = list(limerick_nature) #2381
-df_lim_nat = pd.DataFrame(limerick_nature_list)
 
-df_lim_nat.info()
-# <class 'pandas.core.frame.DataFrame'>
-# RangeIndex: 2381 entries, 0 to 2380
-# Data columns (total 12 columns):
-#   Column               Non-Null Count  Dtype 
-# ---  ------               --------------  ----- 
-# 0   _id                  2381 non-null   object
-# 1   created_at           2381 non-null   object
-# 2   id                   2381 non-null   object
-# 3   author_id            2381 non-null   object
-# 4   lang                 2381 non-null   object
-# 5   conversation_id      2381 non-null   object
-# 6   entities             2376 non-null   object
-# 7   public_metrics       2381 non-null   object
-# 8   text                 2381 non-null   object
-# 9   attachments          998 non-null    object
-# 10  context_annotations  1179 non-null   object
-# 11  geo                  228 non-null    object
 
 # Df with 
 df_green = pd.DataFrame(collection.posts.find({"$and" : 
                                                [{"$text":{"$search": "shannon nature ballyhoura Thomond Park Westfields peoplespark TedRussell Adare Wetlands shelbourne"}},
                                                 {"geo": {"place_id": "54e862bb3ff2f749"}}]} )) # 1102 post
-df_green1 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"shannon\" \"limerick\""}} )) # 21636
-df_green1_2 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"shannon estuary\" \"limerick\""}} )) # 345
-df_green1_3 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"shannon river\" \"limerick\""}} )) # 776
+df_green1 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"shannon estuary\" \"limerick\""}} )) # 345
+df_green1_2 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"shannon river\" \"limerick\""}} )) # 776
 df_green2 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"park\" \"limerick\""}} )) # 20595
 df_green3 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"ballyhoura\" \"limerick\""}} )) # 1866
 df_green4 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"westfields\" \"limerick\""}} )) # 666
 df_green5 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"ted russel\" \"limerick\""}} )) # 69
+df_green6 = pd.DataFrame(collection.posts.find({ "$text":{"$search": "\"nature\" \"limerick\""}} )) # 2381
 
-
-df_limerick = pd.concat([df_lim_nat,df_green, df_green1, df_green1_2, df_green1_3, 
-                         df_green2, df_green3, df_green4, df_green5 ]).drop_duplicates(subset = ["id"]).reset_index(drop=True) # 46642
+df_limerick = pd.concat([df_green, df_green1, df_green1_2,  
+                         df_green2, df_green3, df_green4, df_green5, df_green6 ]).drop_duplicates(subset = ["id"]).reset_index(drop=True) # 26896
 
 
