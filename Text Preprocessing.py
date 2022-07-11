@@ -12,18 +12,18 @@ import pandas as pd
 # It's important to follow this order
 
 # Creation of a new text column called text1 with the first pre-processing step: lower case
-df_lim_nat['text1'] = df_lim_nat['text'].apply(lambda x: " ".join(x.lower() for x in x.split()))
-df_lim_nat['text1'].head()
+df_green['text1'] = df_green['text'].apply(lambda x: " ".join(x.lower() for x in x.split()))
+df_green['text1'].head()
 
 # Remove hyperlinks
-df_lim_nat['text1'] = [re.sub(r'https?:\/\/.\S+', "", x) for x in df_lim_nat['text1']]
+df_green['text1'] = [re.sub(r'https?:\/\/.\S+', "", x) for x in df_green['text1']]
 
 # Remove websites and email address
-df_lim_nat['text1'] = [re.sub(r"\S+com", "", x) for x in df_lim_nat['text1']]
-df_lim_nat['text1'] = [re.sub(r"\S+@\S+", "", x) for x in df_lim_nat['text1']]
+df_green['text1'] = [re.sub(r"\S+com", "", x) for x in df_green['text1']]
+df_green['text1'] = [re.sub(r"\S+@\S+", "", x) for x in df_green['text1']]
 
 # Remove old style retweet text "RT"
-df_lim_nat['text1'] = [re.sub(r'^rt[\s]+', '', x) for x in df_lim_nat['text1']]
+df_green['text1'] = [re.sub(r'^rt[\s]+', '', x) for x in df_green['text1']]
 
 # Expanding Contractions
 # dictionary consisting of the contraction and the actual value
@@ -32,14 +32,14 @@ apos_dict = {"'s":" is","n't":" not","'m":" am","'ll":" will",
 # replace the contractions
 for key,value in apos_dict.items():
     if key in df['text1']:
-        df_lim_nat['text1'] = df_lim_nat['text1'].replace(key,value)
+        df_green['text1'] = df_green['text1'].replace(key,value)
 
 # Split attached words
 ?????
 
 # Remove punctuations (anche hashtag)
-df_lim_nat['text1'] = df_lim_nat['text1'].str.replace('[^\w\s]','')
-df_lim_nat['text1'].head()
+df_green['text1'] = df_green['text1'].str.replace('[^\w\s]','')
+df_green['text1'].head()
 
 
 ### Stopwords
@@ -51,7 +51,7 @@ print(len(stopwords)) # 326
 print(stopwords)
 
 # exclude the stopwords from the text
-df_lim_nat['text1'] = df_lim_nat['text1'].apply(lambda x: " ".join(x for x in x.split() if x not in stopwords))
+df_green['text1'] = df_green['text1'].apply(lambda x: " ".join(x for x in x.split() if x not in stopwords))
 
 
 ### Lemmatization
@@ -66,11 +66,11 @@ df_lim_nat['text1'] = df_lim_nat['text1'].apply(lambda x: " ".join(x for x in x.
 def space(tweet):
     doc = nlp(tweet)
     return " ".join([token.lemma_ for token in doc])
-df_lim_nat['text1'] = df_lim_nat['text1'].apply(space)
+df_green['text1'] = df_green['text1'].apply(space)
 
 ## Check which are the most common words
 # token dividen
-token_ = [i.split() for i in df_lim_nat["text1"]]
+token_ = [i.split() for i in df_green["text1"]]
 # token joined in one list
 tokens = [item for sublist in token_ for item in sublist]
 
