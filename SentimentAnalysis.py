@@ -29,3 +29,15 @@ df_green["Sentiment"].value_counts()
 # Positive    626
 # Neutral     386
 # Negative     90
+
+import plotly.express as px
+
+fig_pie = px.pie(df_green, names='Sentiment', title='Tweets Classifictaion', height=250,
+                 hole=0.7, color_discrete_sequence=px.colors.qualitative.T10)
+fig_pie.update_traces(textfont=dict(color='#fff'))
+fig_pie.update_layout(margin=dict(t=80, b=30, l=70, r=40),
+                      plot_bgcolor='#2d3035', paper_bgcolor='#2d3035',
+                      title_font=dict(size=25, color='#a5a7ab', family="Lato, sans-serif"),
+                      font=dict(color='#8a8d93'),
+                      legend=dict(orientation="h", yanchor="bottom", y=1, xanchor="right", x=0.8)
+                      )
