@@ -41,3 +41,5 @@ fig_pie.update_layout(margin=dict(t=80, b=30, l=70, r=40),
                       font=dict(color='#8a8d93'),
                       legend=dict(orientation="h", yanchor="bottom", y=1, xanchor="right", x=0.8)
                       )
+
+
