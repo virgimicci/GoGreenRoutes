@@ -43,3 +43,5 @@ fig_pie.update_layout(margin=dict(t=80, b=30, l=70, r=40),
                       )
 
 
+
+# NRC Word-Emotion Association Lexicon (aka EmoLex)
