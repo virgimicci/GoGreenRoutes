@@ -44,4 +44,8 @@ fig_pie.update_layout(margin=dict(t=80, b=30, l=70, r=40),
 
 
 
-# NRC Word-Emotion Association Lexicon (aka EmoLex)
+# NRC Word-Emotion Association Lexicon (aka EmoLex) 
+# LeXmo package
+
+emo = df_green['text1'].apply(lambda x:LeXmo.LeXmo(x))
+
