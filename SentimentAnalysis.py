@@ -45,7 +45,10 @@ fig_pie.update_layout(margin=dict(t=80, b=30, l=70, r=40),
 
 
 # NRC Word-Emotion Association Lexicon (aka EmoLex) 
-# LeXmo package
+# The NRC Word-Emotion Association Lexicon (often shortened to NRC Emotion Lexicon, and originally called EmoLex) 
+# is a list of English words and their manually annotated associations with eight basic emotions (anger, fear, anticipation, trust, surprise, sadness, joy, and disgust) 
+# and two sentiments (negative and positive). Translations of the lexicon in other languages are available.
 
+# LeXmo package
 emo = df_green['text1'].apply(lambda x:LeXmo.LeXmo(x))
 
