@@ -52,3 +52,90 @@ fig_pie.update_layout(margin=dict(t=80, b=30, l=70, r=40),
 # LeXmo package
 emo = df_green['text1'].apply(lambda x:LeXmo.LeXmo(x))
 
+# NRC Word-Emotion Association Lexicon without package but importing the .txt file
+filepath = "C:/Users/micci/Downloads/NRC-Suite-of-Sentiment-Emotion-Lexicons/NRC-Suite-of-Sentiment-Emotion-Lexicons/NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
+emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
+emolex_df.head(12)
+
+
+
+df_green['Polarity Score'] = df_green['text1'].apply(lambda x:SIA.polarity_scores(x)['compound'])
+df_green['Neutral Score'] = df_green['text1'].apply(lambda x:SIA.polarity_scores(x)['neu'])
+df_green['Negative Score'] = df_green['text1'].apply(lambda x:SIA.polarity_scores(x)['neg'])
+df_green['Positive Score'] = df_green['text1'].apply(lambda x:SIA.polarity_scores(x)['pos'])
+
+# Converting 0 to 1 Decimal Score to a Categorical Variable
+df_green['Sentiment']=''
+df_green.loc[df_green['Polarity Score'] >0,'Sentiment']='Positive'
+df_green.loc[df_green['Polarity Score'] == 0,'Sentiment']='Neutral'
+df_green.loc[df_green['Polarity Score'] <0,'Sentiment']='Negative'
+df_green[:5]
+
+df_green["Sentiment"].value_counts()
+# Positive    626
+# Neutral     386
+# Negative     90
+
+import plotly.express as px
+
+fig_pie = px.pie(df_green, names='Sentiment', title='Tweets Classifictaion', height=250,
+                 hole=0.7, color_discrete_sequence=px.colors.qualitative.T10)
+fig_pie.update_traces(textfont=dict(color='#fff'))
+fig_pie.update_layout(margin=dict(t=80, b=30, l=70, r=40),
+                      plot_bgcolor='#2d3035', paper_bgcolor='#2d3035',
+                      title_font=dict(size=25, color='#a5a7ab', family="Lato, sans-serif"),
+                      font=dict(color='#8a8d93'),
+                      legend=dict(orientation="h", yanchor="bottom", y=1, xanchor="right", x=0.8)
+                      )
+
+
+
+# NRC Word-Emotion Association Lexicon (aka EmoLex) 
+# The NRC Word-Emotion Association Lexicon (often shortened to NRC Emotion Lexicon, and originally called EmoLex) 
+# is a list of English words and their manually annotated associations with eight basic emotions (anger, fear, anticipation, trust, surprise, sadness, joy, and disgust) 
+# and two sentiments (negative and positive). Translations of the lexicon in other languages are available.
+
+# LeXmo package
+emo = df_green['text1'].apply(lambda x:LeXmo.LeXmo(x))
+
+
+df_green['Polarity Score'] = df_green['text1'].apply(lambda x:SIA.polarity_scores(x)['compound'])
+df_green['Neutral Score'] = df_green['text1'].apply(lambda x:SIA.polarity_scores(x)['neu'])
+df_green['Negative Score'] = df_green['text1'].apply(lambda x:SIA.polarity_scores(x)['neg'])
+df_green['Positive Score'] = df_green['text1'].apply(lambda x:SIA.polarity_scores(x)['pos'])
+
+# Converting 0 to 1 Decimal Score to a Categorical Variable
+df_green['Sentiment']=''
+df_green.loc[df_green['Polarity Score'] >0,'Sentiment']='Positive'
+df_green.loc[df_green['Polarity Score'] == 0,'Sentiment']='Neutral'
+df_green.loc[df_green['Polarity Score'] <0,'Sentiment']='Negative'
+df_green[:5]
+
+df_green["Sentiment"].value_counts()
+# Positive    626
+# Neutral     386
+# Negative     90
+
+import plotly.express as px
+
+fig_pie = px.pie(df_green, names='Sentiment', title='Tweets Classifictaion', height=250,
+                 hole=0.7, color_discrete_sequence=px.colors.qualitative.T10)
+fig_pie.update_traces(textfont=dict(color='#fff'))
+fig_pie.update_layout(margin=dict(t=80, b=30, l=70, r=40),
+                      plot_bgcolor='#2d3035', paper_bgcolor='#2d3035',
+                      title_font=dict(size=25, color='#a5a7ab', family="Lato, sans-serif"),
+                      font=dict(color='#8a8d93'),
+                      legend=dict(orientation="h", yanchor="bottom", y=1, xanchor="right", x=0.8)
+                      )
+
+
+
+# NRC Word-Emotion Association Lexicon (aka EmoLex) 
+# The NRC Word-Emotion Association Lexicon (often shortened to NRC Emotion Lexicon, and originally called EmoLex) 
+# is a list of English words and their manually annotated associations with eight basic emotions (anger, fear, anticipation, trust, surprise, sadness, joy, and disgust) 
+# and two sentiments (negative and positive). Translations of the lexicon in other languages are available.
+
+# LeXmo package
+emo = df_green['text1'].apply(lambda x:LeXmo.LeXmo(x))
+
+text_object = df_green['text1'].apply(lambda x:NRCLex(x))
