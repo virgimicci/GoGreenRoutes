@@ -39,6 +39,8 @@ VADER_fig = px.bar(VADERsent_df, x='Sentiment count', y='Sentiment value', color
              width = 800, height = 400, color_discrete_sequence=px.colors.qualitative.Set3)
 VADER_fig.show()
 
+pol_score = px.line(df_green, x="text1", y="Polarity Score")
+pol_score.show()
 
 ### NRC Word-Emotion Association Lexicon (aka EmoLex) ###
 # The NRC Word-Emotion Association Lexicon (often shortened to NRC Emotion Lexicon, and originally called EmoLex) 
