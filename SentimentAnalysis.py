@@ -56,7 +56,7 @@ emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], ski
 emolex_df.head(12)
 
 ###### creation of a column where I convert the tweets in list of words # NON USATO
-df_green["token"] = [i.split() for i in df_green["text1"]]
+#df_green["token"] = [i.split() for i in df_green["text1"]]
 
 ## USING NRClex 
 ## Is based on the National Research Council Canada (NRC) affect lexicon 
